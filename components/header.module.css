@@ -1,0 +1,16 @@
+.header {
+    background-color: aliceblue;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: .5em;
+}
+
+.header a {
+    display: inline-block;
+    padding: .5em 1em;
+}
+
+.header a:hover {
+    background-color: #ddd;
+}
