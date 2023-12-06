@@ -1,15 +1,12 @@
 .header {
-    width: calc(100vw - 14px);
+    width: calc(100% - 14px);
     background-color: #fff;
-    border-radius: 0 0 1.5rem 1.5rem;
+    border-radius: 0 0 min(max(4vw, 30px), 50px) min(max(4vw, 30px), 50px);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
-    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS PGothic", sans-serif;
 }
 
 .header * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -17,32 +14,35 @@
     font-size: 2.5rem;
     font-family: 'All Round Gothic';
     font-weight: 200;
-    padding: .5rem 0 0 0;
+    padding: 8px 0 0 0;
     text-align: center;
-}
-
-.header li {
-    list-style: none;
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    overflow-x: scroll;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    width: 96%;
-}
-.header li::-webkit-scrollbar {
-    display: none;
 }
 
 .header ul {
-    border-radius: .5rem;
-    display: inline-flex;
-    padding: .2rem .5rem;
-    margin: .5rem .2rem .5rem;
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 96%;
+    overflow-x: scroll;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
 }
 
-.header ul:hover {
+.header ul::-webkit-scrollbar {
+    display: none;
+}
+
+.header li {
+    display: inline-flex;
+    margin: .5rem 0 .5rem .2rem;
+}
+.header li a {
+    padding: .2rem .5rem;
+}
+
+.header li:hover {
     background-color: #ddd;
+    border-radius: .5rem;
     color: #fff;
 }
