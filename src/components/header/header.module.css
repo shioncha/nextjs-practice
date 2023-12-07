@@ -37,12 +37,13 @@
     display: inline-flex;
     margin: .5rem 0 .5rem .2rem;
 }
+
 .header li a {
     padding: .2rem .5rem;
 }
 
-.header li:hover {
-    background-color: #ddd;
+.header li a:hover {
+    background-color: #bbb;
     border-radius: .5rem;
     color: #fff;
 }
