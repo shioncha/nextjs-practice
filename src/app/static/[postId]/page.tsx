@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import parse from "html-react-parser";
-import { getDetail, getList } from "../../../libs/microcms";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { getDetail, getList, getCategoryList } from "@/libs/microcms";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export async function generateStaticParams() {
     const { contents } = await getList();
@@ -31,9 +37,10 @@ export default async function StaticDetailPage({
     return (
         <div>
             <h1>{post.title}</h1>
+            <p>公開：{dayjs.utc(post.publishedAt).tz('Asia/Tokyo').format('YYYY年MM月DD日')}</p>
+            <p>カテゴリー：{post.category.name}</p>
             <h2>{time}</h2>
             <div>{parse(post.content)}</div>
-
         </div>
     );
 }
