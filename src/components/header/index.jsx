@@ -12,11 +12,12 @@ export async function Header() {
         <li><Link href="/">Home</Link></li>
         <li><Link href="/about">About</Link></li>
         <li><Link href="/blog/test">Test</Link></li>
-        {contents.map((content) => (
-          <li key={content.id}>
-            <Link href={`/category/${content.id}`}>{content.name}</Link>
-          </li>
-        ))}
+        {contents.map((content) => {
+          return (
+            <li key={content.id}>
+              <Link href={`/category/${content.id}`}>{content.name}</Link>
+            </li>
+        );})}
       </ul>
     </header>
   )

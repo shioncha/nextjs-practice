@@ -41,7 +41,9 @@ export const client = createClient({
 export const getList = async (queries?: MicroCMSQueries) => {
     const listData = await client.getList<Blog>({
         endpoint: "blogs",
-        queries,
+        queries: {
+            limit: 10,
+        },
     });
 
  // データの取得が目視しやすいよう明示的に遅延効果を追加
@@ -71,8 +73,33 @@ export const getDetail = async (
 export const getCategoryList = async (queries?: MicroCMSQueries) => {
     const listData = await client.getList<Category>({
         endpoint: "categories",
+        queries: {
+            limit: 10,
+        },
+    });
+
+    return listData;
+};
+
+// カテゴリーの詳細を取得
+export const getCategoryDetail = async (
+    contentId: string,
+    queries?: MicroCMSQueries
+) => {
+    const detailData = await client.getListDetail<Category>({
+        endpoint: "categories",
+        contentId,
         queries,
     });
 
+    return detailData;
+};
+
+// ブログ一覧を取得
+export const getBlogList = async (queries?: MicroCMSQueries) => {
+    const listData = await client.getAllContents<Blog>({
+        endpoint: "blogs",
+    });
+    console.log(listData);
     return listData;
 };

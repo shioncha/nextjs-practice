@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { getDetail, getList, getCategoryList } from "@/libs/microcms";
+import { getDetail, getList } from "@/libs/microcms";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
