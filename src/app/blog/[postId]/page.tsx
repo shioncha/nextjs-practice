@@ -1,3 +1,4 @@
+export const dynamicParams = false;
 import { notFound } from "next/navigation";
 import parse from "html-react-parser";
 import dayjs from "dayjs";
