@@ -106,19 +106,22 @@ a {
   }
 }
 */
+
 body {
-  background-color: #FBFAFF;
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS PGothic", sans-serif;
+    background-color: #FBFAFF;
+    color: #444;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "MS PGothic", sans-serif;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    line-height: 1.5;
+    margin: 0;
 }
 
 *:root {
-  --main-color: #6CC9D4;
+    --main-color: #6CC9D4;
 }
 
 a {
@@ -128,4 +131,14 @@ a {
 
 a:hover {
     color: #cbe9ec;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+ul {
+    margin-left: 1.5rem;
 }
