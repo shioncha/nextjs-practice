@@ -61,8 +61,7 @@ export const getDetail = async (
         endpoint: "blogs",
         contentId,
         queries,
-    }) .catch((e) => { console.log(e); })
-    ;
+    }) .catch((e) => { console.log(e); });
 
  // データの取得が目視しやすいよう明示的に遅延効果を追加
     //await new Promise((resolve) => setTimeout(resolve, 3000));
