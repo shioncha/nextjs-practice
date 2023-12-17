@@ -21,6 +21,22 @@ export async function generateStaticParams() {
     return [...paths];
 }
 
+export async function generateMetadata ({
+    params: { postId },
+}: {
+    params: { postId: string };
+}) {
+    const post = await getDetail(postId);
+
+    if (!post || !post.title) {
+        return "Untitled";
+    }
+
+    return {
+        title: post.title,
+    };
+}
+
 export default async function StaticDetailPage({
     params: { postId },
 }: {
