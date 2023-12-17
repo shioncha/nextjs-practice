@@ -8,7 +8,7 @@ export async function Header() {
   return (
     <header className={styles.header}>
       <Link href="/"><h1>mixne.net</h1></Link>
-      <ul className={styles.container}>
+      <ul>
         <li><Link href="/">Home</Link></li>
         <li><Link href="/about">About</Link></li>
         <li><Link href="/blog/test">Test</Link></li>
