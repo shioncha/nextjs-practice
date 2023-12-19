@@ -8,6 +8,7 @@ import { getDetail, getList } from "@/libs/microcms";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { ShareTree } from "@/components/share";
+import Image from "next/image";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -64,7 +65,7 @@ export default async function StaticDetailPage({
                 </div>
             </div>
             <div className={styles.article}>
-                <img src={post.eyecatch.url} className={styles.thumbnail} />
+                <Image src="${post.eyecatch.url}" alt="${post.eyecatch.alt}" />
                 <h1>{post.title}</h1>
                 <p>公開：{dayjs.utc(post.publishedAt).tz('Asia/Tokyo').format('YYYY年MM月DD日')}</p>
                 <p>カテゴリー：<Link href={'/category/' + post.category.id}>{post.category.name}</Link></p>
