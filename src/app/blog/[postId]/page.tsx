@@ -64,7 +64,7 @@ export default async function StaticDetailPage({
                 </div>
             </div>
             <div className={styles.article}>
-                <img src={post.eyecatch.url} alt={post.eyecatch.alt} className={styles.thumbnail} />
+                <img src={post.eyecatch.url} className={styles.thumbnail} />
                 <h1>{post.title}</h1>
                 <p>公開：{dayjs.utc(post.publishedAt).tz('Asia/Tokyo').format('YYYY年MM月DD日')}</p>
                 <p>カテゴリー：<Link href={'/category/' + post.category.id}>{post.category.name}</Link></p>
