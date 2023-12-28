@@ -8,6 +8,7 @@ import { getDetail, getList } from "@/libs/microcms";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { ShareTree } from "@/components/share";
+import { Aside } from "@/components/aside";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -70,25 +71,7 @@ export default async function StaticDetailPage({
                 <p>カテゴリー：<Link href={'/category/' + post.category.id}>{post.category.name}</Link></p>
                 <div>{parse(post.content)}</div>
             </div>
-            <aside className={styles.aside}>
-                <h2>{time}</h2>
-                <div>
-                    <p className={styles.title}>目次</p>
-                    <ol>
-                        <li>aa</li>
-                        <li>aa</li>
-                        <li>aa</li>
-                    </ol>
-                </div>
-                <div>
-                    <p className={styles.title}>Follow</p>
-                    <ul>
-                        <li>RSS</li>
-                        <li>Feedly</li>
-                        <li>Twitter</li>
-                    </ul>
-                </div>
-            </aside>
+            <Aside />
         </div>
     );
 }
