@@ -121,7 +121,19 @@ body {
 }
 
 *:root {
-    --main-color: #6CC9D4;
+    --logo-color: #6cc9d4;
+    --main-color: #56a0a8;
+    --text-color: #444;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
 a {
@@ -131,6 +143,7 @@ a {
 
 a:hover {
     color: #cbe9ec;
+    text-decoration: underline;
 }
 
 img {
@@ -141,4 +154,13 @@ img {
 
 ul {
     margin-left: 1.5rem;
+}
+
+@media screen and (min-width: 1280px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
 }

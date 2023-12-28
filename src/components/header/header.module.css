@@ -11,6 +11,7 @@
 }
 
 .header h1 {
+    color: var(--logo-color);
     font-size: 2.5rem;
     font-family: 'All Round Gothic';
     font-weight: 200;

@@ -1,9 +1,12 @@
+import Link from "next/link";
+
 // app/not-found.tsx
 export default function NotFound() {
     return (
     <>
-        <title>すごい404ページ</title>
-        <h1>404</h1>
+        <h1>記事が見つかりませんでした</h1>
+        <p>URLが間違っているか、削除されたページです。</p>
+        <Link href="/">トップページに戻る</Link>
     </>
     );
 }
