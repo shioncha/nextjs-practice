@@ -23,6 +23,17 @@ export type Category = {
     name: string;
 } & MicroCMSDate;
 
+export type BlogList = {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    revisedAt: string;
+    content: string;
+    eyecatch?: {
+        url: string;
+    }
+} & MicroCMSDate;
+
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
     throw new Error("MICROCMS_SERVICE_DOMAIN is required");
 }
