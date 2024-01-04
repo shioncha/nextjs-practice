@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from '@/components/header/header.module.css'
-import { getCategoryList } from '@/libs/microcms'
+import { getCategoryList } from '@/lib/microcms'
 
 export async function Header() {
   const { contents } = await getCategoryList();
