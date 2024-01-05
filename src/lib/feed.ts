@@ -1,11 +1,11 @@
 import { Feed } from 'feed';
-import { getBlogList } from './microcms';
+import { getBlogList } from '@/lib/microcms';
 
 export const generateRssFeed = async (): Promise<string> => {
-  //環境変数など任意のリンクをbaseUrlに入れる。
+    // フィードを生成
     const baseUrl ='localhost:3000'
     const feed = new Feed({
-        title: 'mixne',
+        title: 'mixne-dev',
         description: 'ガジェットやテックを中心に、しおんの思ったこと・感じたこと',
         id:baseUrl,
         link:baseUrl,
@@ -14,13 +14,15 @@ export const generateRssFeed = async (): Promise<string> => {
         generator:baseUrl,
     });
 
- //データをとってくる。API経由やファイル経由を想定
+    // ブログ一覧を取得
     const posts = await getBlogList();
-//各記事をフィードに追加
+
+    // フィードに追加
     posts.map((post) => {
         feed.addItem({
             title: post.title,
-            description: post.content,
+            description: "",
+            content: post.content,
             image: post.eyecatch?.url,
             date: new Date(post.createdAt),
             id: `${baseUrl}/blog/${post.id}`,
@@ -28,10 +30,5 @@ export const generateRssFeed = async (): Promise<string> => {
         });
     });
 
-// Output: RSS 2.0
     return feed.rss2();
-
-//今回はxmlの生成ですが、atomやjsonファイルでの生成も可能です。
-//feed.atom1()でatomファイル生成
-//feed.json1()でjsonのファイル生成
 };

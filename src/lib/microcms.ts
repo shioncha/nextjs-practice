@@ -11,7 +11,6 @@ export type Blog = {
     title: string;
     content: string;
     eyecatch?: MicroCMSImage;
-    publishedAt?: string;
     category?: {
         id: string;
         name: string;
@@ -25,13 +24,8 @@ export type Category = {
 
 export type BlogList = {
     id: string;
-    createdAt: string;
-    updatedAt: string;
-    revisedAt: string;
     content: string;
-    eyecatch?: {
-        url: string;
-    }
+    eyecatch?: MicroCMSImage;
 } & MicroCMSDate;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -53,12 +47,10 @@ export const getList = async (queries?: MicroCMSQueries) => {
     const listData = await client.getList<Blog>({
         endpoint: "blogs",
         queries: {
+            filters: 'category[not_equals]page',
             limit: 10,
         },
     });
-
- // データの取得が目視しやすいよう明示的に遅延効果を追加
-    //await new Promise((resolve) => setTimeout(resolve, 3000));
 
     return listData;
 };
@@ -71,11 +63,8 @@ export const getDetail = async (
     const detailData = await client.getListDetail<Blog>({
         endpoint: "blogs",
         contentId,
-        queries,
+        queries
     }) .catch((e) => { console.log(e); });
-
- // データの取得が目視しやすいよう明示的に遅延効果を追加
-    //await new Promise((resolve) => setTimeout(resolve, 3000));
 
     return detailData;
 };
@@ -85,6 +74,7 @@ export const getCategoryList = async (queries?: MicroCMSQueries) => {
     const listData = await client.getList<Category>({
         endpoint: "categories",
         queries: {
+            filters: 'id[not_equals]page',
             limit: 10,
         },
     });
@@ -106,11 +96,14 @@ export const getCategoryDetail = async (
     return detailData;
 };
 
-// ブログ一覧を取得
+// ブログ一覧を取得（RSS用）
 export const getBlogList = async (queries?: MicroCMSQueries) => {
     const listData = await client.getAllContents<Blog>({
         endpoint: "blogs",
+        queries: {
+            filters: 'category[not_equals]page',
+        },
     });
-    console.log(listData);
+
     return listData;
 };

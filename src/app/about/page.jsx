@@ -1,97 +1,66 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { notFound } from "next/navigation";
+import parse from "html-react-parser";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { getDetail, getList } from "@/lib/microcms";
+import styles from "./page.module.css";
+import { ShareTree } from "@/components/share";
 
-export default function Home() {
-  return (
-    <>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/app/about.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+export async function generateStaticParams() {
+    const { contents } = await getList();
+
+    const paths = contents.map((post) => {
+        return {
+            postId: post.id,
+        };
+    });
+
+    return [...paths];
+}
+
+export async function generateMetadata () {
+    const postId = 'about';
+    const post = await getDetail(postId);
+
+    if (!post || !post.title) {
+        return "Untitled";
+    }
+
+    return {
+        title: post.title,
+    };
+}
+
+export default async function StaticDetailPage() {
+    const postId = 'about';
+    const post = await getDetail(postId);
+
+ // ページの生成された時間を取得
+    const time = new Date().toLocaleString();
+
+    if (!post) {
+        notFound();
+    }
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.share0}>
+                <div className={styles.share}>
+                    <div className={styles.shareInner}>
+                        <ShareTree url={'https://mixne.net/' + postId} title={post.title}/>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.article}>
+                <img src={post.eyecatch.url} className={styles.thumbnail} />
+                <h1>{post.title}</h1>
+                <div>{parse(post.content)}</div>
+                <p>最終更新：{dayjs.utc(post.updatedAt).tz('Asia/Tokyo').format('YYYY年MM月DD日')}</p>
+            </div>
         </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-    </>
-  )
+    );
 }
