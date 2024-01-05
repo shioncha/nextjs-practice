@@ -10,14 +10,13 @@ export async function Header() {
       <Link href="/"><h1>mixne.net</h1></Link>
       <ul>
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/about">About</Link></li>
-        <li><Link href="/blog/test">Test</Link></li>
         {contents.map((content) => {
           return (
             <li key={content.id}>
               <Link href={`/category/${content.id}`}>{content.name}</Link>
             </li>
-        );})}
+          );
+        })}
       </ul>
     </header>
   )

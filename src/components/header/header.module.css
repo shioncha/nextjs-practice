@@ -37,6 +37,7 @@
 .header li {
     display: inline-flex;
     margin: .5rem 0 .5rem .2rem;
+    position: relative;
 }
 
 .header li a {
@@ -47,4 +48,20 @@
     background-color: #bbb;
     border-radius: .5rem;
     color: #fff;
+}
+
+.header li:first-child {
+    margin-right: 1rem;
+}
+
+.header li:first-child::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background-color: #bbb;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -.5rem;
 }
