@@ -12,9 +12,9 @@ dayjs.extend(timezone);
 export async function generateStaticParams() {
     const { contents } = await getCategoryList();
 
-    const paths = contents.map((post) => {
+    const paths = contents.map((category) => {
         return {
-            postId: post.id,
+            categoryId: category.id,
         };
     });
 
