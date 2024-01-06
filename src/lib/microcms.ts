@@ -82,18 +82,20 @@ export const getCategoryList = async (queries?: MicroCMSQueries) => {
     return listData;
 };
 
-// カテゴリーの詳細を取得
+// カテゴリーごとに記事を取得
 export const getCategoryDetail = async (
-    contentId: string,
+    categoryId: string,
     queries?: MicroCMSQueries
 ) => {
-    const detailData = await client.getListDetail<Category>({
-        endpoint: "categories",
-        contentId,
-        queries,
+    const listData = await client.getList<Blog>({
+        endpoint: "blogs",
+        queries: {
+            filters: 'category[not_equals]page[and]category[equals]' + categoryId,
+            limit: 10,
+        },
     });
 
-    return detailData;
+    return listData;
 };
 
 // ブログ一覧を取得（RSS用）

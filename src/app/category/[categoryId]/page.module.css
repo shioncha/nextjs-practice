@@ -1,0 +1,38 @@
+.container {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 auto;
+    margin-top: 24px;
+    max-width: 1280px;
+}
+
+.item {
+    background-color: #FFF;
+    border-radius: 30px;
+    list-style-type: none;
+    padding: 24px;
+}
+
+.item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.thumbnail {
+    border-radius: 30px 30px 0 0;
+    height: auto;
+    max-width: calc(100% + 48px);
+    object-fit: cover;
+    position: relative;
+    left: -24px;
+    top: -24px;
+}
+
+.date {
+    color: #535353;
+}
+
+.title {
+    font-size: 1rem;
+}
