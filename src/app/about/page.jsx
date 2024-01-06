@@ -39,22 +39,13 @@ export default async function StaticDetailPage() {
     const postId = 'about';
     const post = await getDetail(postId);
 
- // ページの生成された時間を取得
-    const time = new Date().toLocaleString();
-
     if (!post) {
         notFound();
     }
 
     return (
         <div className={styles.container}>
-            <div className={styles.share0}>
-                <div className={styles.share}>
-                    <div className={styles.shareInner}>
-                        <ShareTree url={'https://mixne.net/' + postId} title={post.title}/>
-                    </div>
-                </div>
-            </div>
+            <ShareTree url={'https://mixne.net/' + postId} title={post.title}/>
             <div className={styles.article}>
                 <img src={post.eyecatch.url} className={styles.thumbnail} />
                 <h1>{post.title}</h1>

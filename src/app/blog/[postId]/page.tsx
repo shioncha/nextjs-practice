@@ -54,13 +54,7 @@ export default async function StaticDetailPage({
 
     return (
         <div className={styles.container}>
-            <div className={styles.share0}>
-                <div className={styles.share}>
-                    <div className={styles.shareInner}>
-                        <ShareTree url={'https://mixne.net/blog/' + postId} title={post.title}/>
-                    </div>
-                </div>
-            </div>
+            <ShareTree url={'https://mixne.net/blog/' + postId} title={post.title}/>
             <div className={styles.article}>
                 <img src={post.eyecatch.url} className={styles.thumbnail} />
                 <h1>{post.title}</h1>
